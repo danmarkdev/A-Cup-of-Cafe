@@ -1,0 +1,386 @@
+/* Typography & Clean Resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background: #060504;
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow-x: hidden;
+  cursor: none; 
+}
+
+/* CUSTOM MOUSE ARROW DESIGN */
+.custom-cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #ede3d4;
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none; 
+  z-index: 10002; 
+  mix-blend-mode: difference; 
+}
+
+.custom-cursor-outline {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(237, 227, 212, 0.6);
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 10001; 
+  mix-blend-mode: difference;
+  transition: width 0.25s ease, height 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.custom-cursor-outline.hover-active {
+  width: 58px;
+  height: 58px;
+  background-color: rgba(237, 227, 212, 0.2);
+  border-color: #ede3d4;
+}
+
+/* Reading Progress Indicator */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  background: #b19370;
+  z-index: 1000;
+}
+
+/* ELEGANT NAVBAR */
+.main-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background: #ede3d4; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5vw;
+  z-index: 999;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.2);
+}
+
+.nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #211c18;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.nav-item {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #211c18;
+  text-decoration: none;
+  letter-spacing: 2px;
+  transition: color 0.3s ease;
+  cursor: none;
+}
+
+.nav-item:hover {
+  color: #8c7156;
+}
+
+/* FIXED HAMBURGER TOGGLE ARCHITECTURE */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  width: 30px;
+  height: 30px; 
+  position: relative;
+  cursor: pointer;
+  z-index: 1010;
+}
+
+/* Custom Centered Three Lines Element */
+.menu-toggle .hamburger {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 2px;
+  background-color: #211c18;
+  transition: background-color 0.3s ease;
+}
+
+.menu-toggle .hamburger::before,
+.menu-toggle .hamburger::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background-color: #211c18;
+  transition: transform 0.3s ease, top 0.3s ease, bottom 0.3s ease;
+}
+
+.menu-toggle .hamburger::before { top: -8px; left: 0; }
+.menu-toggle .hamburger::after { bottom: -8px; left: 0; }
+
+/* Hamburger transform when activated */
+.menu-toggle.is-active .hamburger {
+  background-color: transparent;
+}
+.menu-toggle.is-active .hamburger::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+.menu-toggle.is-active .hamburger::after {
+  transform: rotate(-45deg);
+  bottom: 0;
+}
+
+/* Base Panel System */
+.panel {
+  min-height: 100vh;
+  padding: 140px 8vw 60px 8vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+
+/* TYPOGRAPHY */
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 4.8rem;
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+/* Spacing fix for the final epilogue header card */
+.end-title {
+  margin-bottom: 2rem; 
+}
+
+.italic-serif {
+  font-style: italic;
+  color: #ede3d4;
+}
+
+h2 {
+  font-size: 2.6rem;
+  margin-bottom: 1.5rem;
+  color: #ede3d4;
+  border-bottom: 1px solid rgba(237, 227, 212, 0.15);
+  padding-bottom: 0.6rem;
+}
+
+p {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: #f5f0ea;
+  opacity: 0.85;
+  margin-bottom: 1.4rem;
+  font-weight: 300;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* PREMIUM GLASSMORPHISM CARDS */
+.glass-card {
+  background: rgba(12, 10, 9, 0.6);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 3.5rem;
+  border-radius: 8px;
+  max-width: 700px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.65);
+  z-index: 2;
+}
+
+/* COMPACT AUTHOR BADGE RULES */
+.credit-badge-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.author-credit {
+  display: inline-block;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: #ede3d4;
+  background-color: #8c7156; 
+  padding: 0.6rem 1.4rem;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* HERO SECTION BACKDROP */
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.55)),
+              url("https://images.unsplash.com/photo-1497515114629-f71d768fd07c?q=80&w=1800") center/cover no-repeat fixed;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-content {
+  z-index: 2;
+  margin-top: 20px;
+}
+
+.hero-sub {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: #ede3d4;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+/* NARRATIVE SCENE BACKGROUNDS */
+.origin-bg {
+  background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), 
+              url('https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1800') center/cover no-repeat fixed;
+}
+
+.harvest-bg {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.75)), 
+              url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1800') center/cover no-repeat fixed;
+}
+
+.roast-bg {
+  background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.7)), 
+              url('https://images.unsplash.com/photo-1507133750040-4a8f57021571?q=80&w=1800') center/cover no-repeat fixed;
+}
+
+.brew-bg {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.75)), 
+              url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=1800') center/cover no-repeat fixed;
+}
+
+.cafe-bg {
+  background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), 
+              url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1800') center/cover no-repeat fixed;
+}
+
+.end-bg {
+  justify-content: center;
+  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), 
+              url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=1800') center/cover no-repeat fixed;
+}
+
+.end-card {
+  text-align: center;
+  background: rgba(8, 6, 5, 0.4);
+  border: 1px solid rgba(237, 227, 212, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVENESS AND TOUCH INTERFACE RULES
+   ========================================================================== */
+@media (max-width: 768px) {
+  html, body {
+    cursor: auto; 
+  }
+
+  .custom-cursor-dot, 
+  .custom-cursor-outline {
+    display: none !important;
+  }
+
+  /* Reveal Hamburger Toggle Icon Container */
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%; 
+    width: 100%;
+    height: 100vh;
+    background: #ede3d4;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3.5rem;
+    z-index: 1000;
+    transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .nav-links.is-open {
+    right: 0;
+  }
+
+  .nav-item {
+    font-size: 1.3rem; 
+    letter-spacing: 3px;
+    cursor: auto;
+  }
+
+  /* Dynamic Text Compressions for Mobile Screen Layouts */
+  h1 {
+    font-size: 2.3rem;
+  }
+  
+  .end-title {
+    margin-bottom: 1.5rem; /* Balanced spacing on mobile screen configurations */
+  }
+
+  h2 {
+    font-size: 1.7rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .panel {
+    padding: 120px 6vw 40px 6vw;
+    justify-content: center;
+  }
+
+  .hero, .origin-bg, .harvest-bg, .roast-bg, .brew-bg, .cafe-bg, .end-bg {
+    background-attachment: scroll !important;
+  }
+
+  .glass-card {
+    padding: 2.2rem 1.5rem;
+    width: 100%;
+  }
+
+  .credit-badge-container {
+    margin-top: 2rem;
+  }
+
+  .author-credit {
+    font-size: 0.9rem;
+    padding: 0.5rem 1.2rem;
+  }
+}
