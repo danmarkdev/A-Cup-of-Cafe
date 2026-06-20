@@ -1,44 +1,35 @@
 gsap.registerPlugin(ScrollTrigger);
-
-// 1. DYNAMIC CUSTOM MOUSE POINTER LOGIC
+// CUSTOM CURSOR
 const cursorDot = document.querySelector(".custom-cursor-dot");
 const cursorOutline = document.querySelector(".custom-cursor-outline");
-
 if (window.innerWidth > 768) {
   window.addEventListener("mousemove", (e) => {
     const posX = e.clientX;
     const posY = e.clientY;
-
     gsap.to(cursorDot, { x: posX, y: posY, duration: 0 });
     gsap.to(cursorOutline, { x: posX, y: posY, duration: 0.15, ease: "power2.out" });
   });
-
-  const interactiveTargets = document.querySelectorAll(".nav-item, .glass-card, header, .nav-brand");
+  const interactiveTargets = document.querySelectorAll(".nav-item, .nav-brand, .story-item, .story-item img, .author-credit");
   interactiveTargets.forEach((target) => {
     target.addEventListener("mouseenter", () => cursorOutline.classList.add("hover-active"));
     target.addEventListener("mouseleave", () => cursorOutline.classList.remove("hover-active"));
   });
 }
-
-// 2. MOBILE TRAY INTERACTION EVENTS
+// MOBILE NAVIGATION
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
 const navItems = document.querySelectorAll(".nav-item");
-
 menuToggle.addEventListener("click", () => {
   menuToggle.classList.toggle("is-active");
   navLinks.classList.toggle("is-open");
 });
-
 navItems.forEach(item => {
   item.addEventListener("click", () => {
     menuToggle.classList.remove("is-active");
     navLinks.classList.remove("is-open");
   });
 });
-
-
-// 3. Global Reading Progress Bar
+// READING PROGRESS BAR
 gsap.to(".progress-bar", {
   width: "100%",
   ease: "none",
@@ -49,39 +40,41 @@ gsap.to(".progress-bar", {
     scrub: true
   }
 });
-
-
-// 4. Hero Layout Entry Sequence
+// HERO ENTRANCE
 const heroTimeline = gsap.timeline();
-heroTimeline.from(".hero-sub", {
-  opacity: 0,
-  y: -25,
-  duration: 1.2,
-  ease: "power2.out"
-})
-.from(".hero h1", {
-  opacity: 0,
-  y: 45,
-  duration: 1.4,
-  ease: "power3.out"
-}, "-=0.8");
-
-
-// 5. Staggered Text Panel Animations
+heroTimeline
+  .from(".hero-sub", { opacity: 0, y: -20, duration: 1, ease: "power2.out" })
+  .from(".hero h1", { opacity: 0, y: 40, duration: 1.2, ease: "power3.out" }, "-=0.6")
+  .from(".hero-tagline", { opacity: 0, y: 20, duration: 1, ease: "power2.out" }, "-=0.5");
+// SCROLL REVEALS
 gsap.utils.toArray(".panel:not(.hero)").forEach((panel) => {
-  const narrativeElements = panel.querySelectorAll(".glass-card, h2, p, h1, .credit-badge-container");
-
-  gsap.from(narrativeElements, {
+  const elements = panel.querySelectorAll(".eyebrow, h2, h3, p, .story-grid, .about-image-wrap, .epilogue-left, .epilogue-right, .follow-label, .author-credit");
+  gsap.from(elements, {
     opacity: 0,
-    y: 50,
-    stagger: 0.22,
-    duration: 1.3,
+    y: 40,
+    stagger: 0.15,
+    duration: 1.1,
     ease: "power2.out",
     scrollTrigger: {
       trigger: panel,
-      start: "top 72%", 
-      end: "top 20%",
-      toggleActions: "play none none reverse" 
+      start: "top 75%",
+      end: "top 25%",
+      toggleActions: "play none none reverse"
+    }
+  });
+});
+// STORY ITEM STAGGER (INDIVIDUAL CARDS)
+gsap.utils.toArray(".story-item").forEach((item, i) => {
+  gsap.from(item, {
+    opacity: 0,
+    y: 50,
+    duration: 1,
+    delay: i * 0.12,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: item,
+      start: "top 85%",
+      toggleActions: "play none none reverse"
     }
   });
 });
