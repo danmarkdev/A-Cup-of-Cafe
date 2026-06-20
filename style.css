@@ -353,17 +353,6 @@ p:last-of-type { margin-bottom: 1.4rem; }
   letter-spacing: 0.5px;
 }
 
-.ornament-dot.center-dot {
-  position: absolute;
-  left: 50%;
-  bottom: 28px;
-  transform: translateX(-50%);
-  display: block;
-  width: 16px;
-  height: 16px;
-  border: 1px solid rgba(244, 240, 230, 0.35);
-  border-radius: 50%;
-}
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
