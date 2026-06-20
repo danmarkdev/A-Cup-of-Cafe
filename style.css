@@ -12,9 +12,6 @@ body {
 }
 
 /* CUSTOM CURSOR */
-/* Uses a solid accent color instead of mix-blend-mode so it stays
-   clearly visible on every section, light or dark, instead of fading
-   into a dark, blurry blob on the dark panels. */
 .custom-cursor-dot {
   width: 8px; height: 8px;
   background-color: #c1652f;
@@ -233,9 +230,7 @@ p:last-of-type { margin-bottom: 1.4rem; }
   text-transform: uppercase;
 }
 
-/* ABOUT / PROLOGUE — light panel, sized to its content rather than
-   stretched to a full viewport height, so it sits close to the menu
-   above and the epilogue below instead of leaving big empty gaps. */
+/* ABOUT / PROLOGUE */
 #about.panel {
   min-height: auto;
   align-items: flex-start;
@@ -290,8 +285,6 @@ p:last-of-type { margin-bottom: 1.4rem; }
   display: none;
 }
 
-/* On the light Prologue panel, the cream-colored dot needs a dark
-   border instead so it stays visible against the light background. */
 #about .ornament-dot {
   border-color: rgba(43, 29, 20, 0.25);
 }
@@ -300,8 +293,7 @@ p:last-of-type { margin-bottom: 1.4rem; }
   .ornament-dot { display: block; }
 }
 
-/* EPILOGUE — compact panel sized to its content, not the full
-   viewport height, so it stays close in size to the section above it. */
+/* EPILOGUE */
 #visit.panel {
   min-height: auto;
   padding: 70px 8vw 70px 8vw;
@@ -353,13 +345,20 @@ p:last-of-type { margin-bottom: 1.4rem; }
   letter-spacing: 0.5px;
 }
 
-
 /* RESPONSIVE */
 @media (max-width: 768px) {
   body { cursor: auto; }
   .custom-cursor-dot, .custom-cursor-outline { display: none !important; }
 
   .menu-toggle { display: flex; }
+
+  /* iOS Safari renders `background-attachment: fixed` incorrectly when
+     combined with `background-size: cover` on non-body elements — it
+     sizes the image against the wrong viewport, which makes it render
+     as a massively zoomed-in, blurry crop instead of the full photo.
+     Switching to `scroll` on small screens fixes it without affecting
+     the parallax-style fixed background on desktop. */
+  .hero { background-attachment: scroll; }
 
   .nav-links {
     position: fixed; top: 0; right: -100%;
